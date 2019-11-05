@@ -1,0 +1,9 @@
+.idea
+.vscode
+temp
+venv
+opencv
+__pycache__
+backup
+*.gif
+tools
