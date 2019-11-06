@@ -24,8 +24,8 @@ class MkDevice(MKHID):
         self.writeCmd(self.mouse.getCmd())
         time.sleep(interval)
 
-    def mouse_scroll(self, key, interval=0.1):
-        self.mouse.scroll(key)
+    def mouse_scroll(self, value, interval=0.1):
+        self.mouse.scroll(value)
         self.writeCmd(self.mouse.getCmd())
         time.sleep(interval)
         self.mouse.scroll(0)
