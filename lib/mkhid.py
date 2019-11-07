@@ -1,4 +1,3 @@
-import sys
 import time
 import pywinusb.hid as hid
 
@@ -170,34 +169,31 @@ class MKHID:
 
         try:
             while not kbhit() and self.device.is_plugged():
+                time.sleep(1)
 
-                self.mouse.press(0)
-                self.mouse.press(1)
-                self.mouse.press(2)
+                # 测试鼠标左右中键（0，1，2）
+                self.mouse.press(1), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.release(1), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
 
-                self.mouse.scroll(1)
+                self.mouse.press(0), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.release(0), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
 
-                self.mouse.move(128, -128)
+                self.mouse.press(2), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.release(2), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
 
-                # print(self.mouse.getCmd())
+                time.sleep(1)
 
-                self.writeCmd(self.mouse.getCmd())
+                # 测试鼠标上下滚动
+                self.mouse.scroll(1), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.scroll(-1), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
 
-                time.sleep(0.1)
+                time.sleep(1)
 
-                self.mouse.release(0)
-                self.mouse.release(1)
-                self.mouse.release(2)
-
-                self.mouse.scroll(-1)
-
-                self.mouse.move(-128, 128)
-
-                # print(self.mouse.getCmd())
-
-                self.writeCmd(self.mouse.getCmd())
-
-                time.sleep(0.1)
+                # 测试鼠标上右下左移动
+                self.mouse.move(-128, -128), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.move(128, -128), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.move(128, 128), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
+                self.mouse.move(-128, 128), self.writeCmd(self.mouse.getCmd()), time.sleep(0.5)
 
         except Exception as e:
             print(e)
