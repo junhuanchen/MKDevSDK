@@ -2,8 +2,7 @@
 .vscode
 temp
 venv
-opencv
 __pycache__
-backup
+*.stg
 *.gif
 tools
