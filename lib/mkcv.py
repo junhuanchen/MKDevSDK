@@ -92,7 +92,6 @@ def azimuth_angle(x1, y1, x2, y2):
         angle = 3.0 * math.pi / 2.0 + math.atan(dy / -dx)
     return (angle * 180 / math.pi)
 
-import numpy as np
 # 欧几里德范数
 def euclidean_distance(x1, y1, x2, y2):
     p1 = np.array([x1, y1])

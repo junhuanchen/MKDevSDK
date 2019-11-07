@@ -106,6 +106,7 @@ class MKHID:
 
             self.mouse = Mouse()
             self.keyboard = Keyboard()
+            self.keyboard_state = 0
         else:
             self.device = None
             raise Exception("Please insert hardware")
@@ -116,8 +117,19 @@ class MKHID:
 
     def readData(self, data):
         if (data[0] == 0x00):
-            pass
-            # print(data)
+            if data[1] == 0x11:
+                self.keyboard_state = data[3]
+
+    def getState(self):
+        self.writeCmd(b'\xBD\x03')
+        time.sleep(0.05)
+        return self.keyboard_state
+
+    def isCaps(self):
+        return (self.keyboard_state & 0x2) == 0x2
+
+    def isNumLock(self):
+        return (self.keyboard_state & 0x1) == 0x1
 
     def writeCmd(self, data):
         while (len(data) < 64):
@@ -195,6 +207,9 @@ class MKHID:
 
         try:
             while not kbhit() and self.device.is_plugged():
+                print('self.getState()', self.getState())
+                print('self.isCaps()', self.isCaps())
+                print('self.isNumLock()', self.isNumLock())
 
                 self.keyboard.press_key(b"\x04\x05\x06\x07\x08\x09")
 

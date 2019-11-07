@@ -6,14 +6,10 @@ https://www.cnblogs.com/vonly/p/7403823.html
 
 http://pyob.oxyry.com/
 
-然后提供 pyc 逆向
+然后提供 pyc 逆向，只防君子，不防小人。
 
 http://tools.bugscaner.com/decompyle/
 
-只防君子，不防小人。
+分享 GIF 图床
 
-
-
-开发仓库文档
-
-http://www.4399.com/flash/193481_1.htm
+https://www.z4a.net/junhuanchen
